@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:background="@android:color/transparent"
+    android:padding="5dp"
+    android:weightSum="1">
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/background_light"
+        android:hint="@string/str_name"
+        android:inputType="textPersonName"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/et_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:background="@android:color/background_light"
+        android:hint="@string/str_e_mail_address"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/et_age"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/et_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:background="@android:color/background_light"
+        android:hint="@string/str_age"
+        android:inputType="date"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/et_age"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:background="@android:color/background_light"
+        android:hint="@string/str_password"
+        android:inputType="textPassword"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/et_v_password"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/et_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:background="@android:color/background_light"
+        android:hint="@string/str_verify_password"
+        android:inputType="textPassword"
+        android:textSize="20dp" />
+
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/et_v_password"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/button"
+        android:text="@string/str_sign_up"
+        android:textColor="@android:color/background_light"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/btn_signup"
+        android:layout_marginTop="45dp"
+        android:background="@color/colorPrimary"
+        android:text="back"
+        android:textColor="@android:color/background_light"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

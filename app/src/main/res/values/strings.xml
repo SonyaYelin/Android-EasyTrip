@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">EasyTrip</string>
+
+    <string name="str_enter_name">name</string>
+    <string name="str_password">password</string>
+    <string name="str_enter">enter</string>
+
+    <string name="str_where_do_you_want_to_go">Where do you want to go?</string>
+    <string name="str_where">where?</string>
+    <string name="str_when">when?</string>
+    <string name="str_from">from?</string>
+    <string name="str_till">till?</string>
+    <string name="str_ok">ok</string>
+    <string name="venue_row_rating">rating</string>
+
+    <string name="str_venue_row_rating">Rating: </string>
+    <string name="str_search">Search</string>
+
+    <string name="venue_search_loading">Retrieving Venues</string>
+    <string name="venue_search_loading_error">Error retreaving venues, please try again.</string>
+    <string name="venue_search_empty_error">You must enter a search term.</string>
+    <string name="venue_search_invalid_error">Could not find a place that matches the one entered, please try again.</string>
+
+    <string name="no_inernet_connection">No internet connection, please try again later.</string>
+    <string name="exit">Exit</string>
+    <string name="profile">Profile</string>
+    <string name="my_trips">My Trips</string>
+    <string name="new_trip">New Trip</string>
+    <string name="str_add">Add</string>
+    <string name="str_e_mail_address">E-mail address</string>
+    <string name="str_sign_in">Sign in</string>
+    <string name="str_verify_password">verify password</string>
+    <string name="str_sign_up">Sign up</string>
+    <string name="str_remove">remove</string>
+    <string name="str_name">name</string>
+    <string name="str_birthday">birthday</string>
+    <string name="str_select_departure_and_return_dates">Select departure and return dates</string>
+    <string name="str_start_planing">Start planing!</string>
+    <string name="back">back</string>
+    <string name="select_departure_date">Select Departure Date:</string>
+    <string name="next">next</string>
+    <string name="place">Place</string>
+    <string name="time">Time</string>
+    <string name="more_details">More details...</string>
+    <string name="show_map">Show map</string>
+    <string name="show_list">Show list</string>
+    <string name="data">date</string>
+    <string name="view_trip">view trip</string>
+    <string name="day">day</string>
+    <string name="details">details</string>
+    <string name="str_age">age</string>
+    <string name="days">days</string>
+
+</resources>

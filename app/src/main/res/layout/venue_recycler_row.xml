@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+  <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:id="@+id/venue_icon"
+      android:layout_width="80dp"
+      android:layout_height="80dp"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginLeft="5dp"
+      android:background="@drawable/circular_background"
+      app:civ_border_color="#FF000000"
+      app:civ_border_width="2dp" />
+
+  <LinearLayout
+      android:layout_width="250dp"
+      android:layout_height="80dp"
+      android:layout_alignRight="@+id/checkBox"
+      android:layout_marginRight="30dp"
+      android:layout_toEndOf="@+id/venue_icon"
+      android:layout_toRightOf="@+id/venue_icon"
+      android:gravity="center_vertical"
+      android:orientation="vertical"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp">
+
+    <TextView
+        android:id="@+id/venue_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/venue_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" />
+  </LinearLayout>
+
+  <CheckBox
+      android:id="@+id/checkBox"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerVertical="true"
+      android:layout_alignParentRight="true"
+      android:layout_marginRight="10dp" />
+
+</RelativeLayout>

@@ -1,0 +1,63 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/table_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:stretchColumns="1"
+    android:weightSum="3"
+    tools:context=".TripTableFragment">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="0.7"
+            android:gravity="start"
+            android:padding="3dip"
+            android:text="@string/place"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:padding="3dip"
+            android:text="@string/day"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="@string/more_details"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".TripTableFragment">
+
+        <ListView
+            android:id="@+id/trip_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:dividerHeight="2dp"
+            android:focusableInTouchMode="true"
+            android:isScrollContainer="true"></ListView>
+
+    </RelativeLayout>
+
+</TableLayout>
