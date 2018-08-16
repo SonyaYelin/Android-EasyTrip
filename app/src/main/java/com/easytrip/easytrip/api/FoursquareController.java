@@ -16,7 +16,7 @@ import com.android.volley.toolbox.Volley;
 import com.easytrip.easytrip.R;
 import com.easytrip.easytrip.SelectPOIActivity;
 import com.easytrip.easytrip.bl.Venue;
-import com.easytrip.easytrip.IVenuesConstants;
+import com.easytrip.easytrip.bl.IVenuesConstants;
 
 import org.json.JSONArray;
 import org.json.JSONException;

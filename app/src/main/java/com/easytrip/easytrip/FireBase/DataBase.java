@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import com.easytrip.easytrip.ProfileActivity;
 import com.easytrip.easytrip.bl.Trip;
 import com.easytrip.easytrip.bl.User;
-import com.easytrip.easytrip.IVenuesConstants;
+import com.easytrip.easytrip.bl.IVenuesConstants;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

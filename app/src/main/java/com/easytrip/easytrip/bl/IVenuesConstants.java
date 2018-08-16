@@ -1,4 +1,4 @@
-package com.easytrip.easytrip;
+package com.easytrip.easytrip.bl;
 
 
 public interface IVenuesConstants {
