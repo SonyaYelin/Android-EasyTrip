@@ -105,7 +105,7 @@ public class CreateTripActivity  extends AppCompatActivity implements  IConstant
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH + 1);
+                int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(CreateTripActivity.this,
@@ -124,7 +124,7 @@ public class CreateTripActivity  extends AppCompatActivity implements  IConstant
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH + 1);
+                int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(CreateTripActivity.this,
@@ -144,7 +144,7 @@ public class CreateTripActivity  extends AppCompatActivity implements  IConstant
                 if ( endDate != null && temp.compareTo(endDate) > 0 )
                     return;
                 startDate = temp;
-                departureTv.setText(dayOfMonth + "/" + month + "/" +year);
+                departureTv.setText(dayOfMonth + "/" + (month+1) + "/" +year);
             }
         };
         onEndDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -155,7 +155,7 @@ public class CreateTripActivity  extends AppCompatActivity implements  IConstant
                     return;
 
                 endDate = temp;
-                returnTv.setText(dayOfMonth + "/" + month + "/" +year);
+                returnTv.setText(dayOfMonth + "/" + (month+1) + "/" +year);
             }
         };
     }
