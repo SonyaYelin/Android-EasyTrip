@@ -32,14 +32,15 @@ import java.util.Map;
 public class FoursquareController implements IFoursquareConstants, IVenuesConstants, Response.Listener<JSONObject>, Response.ErrorListener{
 
 
-  private Context                     context;
-  private ProgressDialog              loadingDialog;
-  private RecyclerView.Adapter        venuesRecyclerAdapter;
-  private List                        venuesList;
+  private Context               context;
+  private ProgressDialog        loadingDialog;
+  private RecyclerView.Adapter  venuesRecyclerAdapter;
+  private List                  venuesList;
 
   public FoursquareController(){
 
   }
+
 
   //get venues
   public void getAttractions(String area, List venuesList, RecyclerView.Adapter venuesRecyclerAdapter, Context context){
@@ -72,10 +73,73 @@ public class FoursquareController implements IFoursquareConstants, IVenuesConsta
             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     requestQueue.add(jsObjRequestSights);
-
   }
 
-  private Venue getVenue(JSONArray items, int i){
+  public void setFoodVenues(String area, final List list, final RecyclerView.Adapter venuesRecyclerAdapter, Context mainContext) {
+    final Context context = mainContext;
+    String url = getExploreUrlByTopic(context, area, FOOD);
+    RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+    JsonObjectRequest jsObjRequest = new JsonObjectRequest (Request.Method.GET, url, null,
+            new Response.Listener<JSONObject>() {
+        @Override
+        public void onResponse(JSONObject response) {
+            try {
+                JSONArray items = response.getJSONObject(RESPONSE).getJSONArray(GROUPS).getJSONObject(0).getJSONArray(ITEMS);
+                for (int i = 0; i < items.length(); i++)
+                    list.add( getVenue(items, i) );
+
+                ( (SelectPOIActivity)context ).onFoodVenuesReady();
+            } catch (JSONException e) {
+            }
+        }
+        }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+
+        }
+    });
+
+    jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+    requestQueue.add(jsObjRequest);
+
+    }
+
+  public void setDrinksVenues(String area, final List list, final RecyclerView.Adapter venuesRecyclerAdapter, Context mainContext){
+      final Context context = mainContext;
+      String url = getExploreUrlByTopic(context, area, DRINKS);
+      RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+      JsonObjectRequest jsObjRequest = new JsonObjectRequest (Request.Method.GET, url, null,
+              new Response.Listener<JSONObject>() {
+          @Override
+          public void onResponse(JSONObject response) {
+              try {
+                  JSONArray items = response.getJSONObject(RESPONSE).getJSONArray(GROUPS).getJSONObject(0).getJSONArray(ITEMS);
+                  for (int i = 0; i < items.length(); i++)
+                      list.add( getVenue(items, i) );
+
+                  ( (SelectPOIActivity)context ).onDrinksVenuesReady();
+
+              } catch (JSONException e) {
+              }
+          }
+          }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+          }
+      });
+
+      jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+              DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+              DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+      requestQueue.add(jsObjRequest);
+    }
+
+    private Venue getVenue(JSONArray items, int i){
     JSONObject venuesJson = null;
     String id, name, country = "", city = "", address = "", iconUri = "";
     double lat = 0, lng = 0;
@@ -91,6 +155,7 @@ public class FoursquareController implements IFoursquareConstants, IVenuesConsta
     }
 
     try {
+
       //location details
       JSONObject locationJson = venuesJson.getJSONObject(LOCATION);
       lat =locationJson.getDouble(LAT);
@@ -103,6 +168,7 @@ public class FoursquareController implements IFoursquareConstants, IVenuesConsta
     }
 
     try{
+
       //categories details
       JSONArray categoriesJson = venuesJson.getJSONArray(CATEGORIES);
       iconUri = buildIconUri(categoriesJson);
@@ -117,7 +183,6 @@ public class FoursquareController implements IFoursquareConstants, IVenuesConsta
     }
 
     Venue v = new Venue(name, id, iconUri, lat, lng, city, country, address, categories);
-    //v.setDetails(context);
     return v;
   }
 
@@ -186,71 +251,4 @@ public class FoursquareController implements IFoursquareConstants, IVenuesConsta
       FoursquareController.this.showError(error, context);
     }
   }
-
-  public void setFoodVenues(String area, final List list, final RecyclerView.Adapter venuesRecyclerAdapter, Context mainContext) {
-    final Context context = mainContext;
-    String url = getExploreUrlByTopic(context, area, FOOD);
-    RequestQueue requestQueue = Volley.newRequestQueue(context);
-
-    JsonObjectRequest jsObjRequest = new JsonObjectRequest (Request.Method.GET, url, null,
-            new Response.Listener<JSONObject>() {
-              @Override
-              public void onResponse(JSONObject response) {
-                try {
-                  JSONArray items = response.getJSONObject(RESPONSE).getJSONArray(GROUPS).getJSONObject(0).getJSONArray(ITEMS);
-                  for (int i = 0; i < items.length(); i++)
-                    list.add( getVenue(items, i) );
-                  ( (SelectPOIActivity)context ).onFoodVenuesReady();
-                } catch (JSONException e) {
-                }
-              }
-            }, new Response.ErrorListener() {
-      @Override
-      public void onErrorResponse(VolleyError error) {
-
-      }
-    });
-
-    jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
-            5000,
-            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-    requestQueue.add(jsObjRequest);
-
-  }
-
-  public void setDrinksVenues(String area, final List list, final RecyclerView.Adapter venuesRecyclerAdapter, Context mainContext){
-    final Context context = mainContext;
-    String url = getExploreUrlByTopic(context, area, DRINKS);
-    RequestQueue requestQueue = Volley.newRequestQueue(context);
-
-    JsonObjectRequest jsObjRequest = new JsonObjectRequest (Request.Method.GET, url, null,
-            new Response.Listener<JSONObject>() {
-              @Override
-              public void onResponse(JSONObject response) {
-                try {
-                  JSONArray items = response.getJSONObject(RESPONSE).getJSONArray(GROUPS).getJSONObject(0).getJSONArray(ITEMS);
-                  for (int i = 0; i < items.length(); i++)
-                    list.add( getVenue(items, i) );
-                  ( (SelectPOIActivity)context ).onDrinksVenuesReady();
-
-                } catch (JSONException e) {
-                }
-              }
-            }, new Response.ErrorListener() {
-      @Override
-      public void onErrorResponse(VolleyError error) {
-      }
-    });
-
-    jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
-            5000,
-            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-    requestQueue.add(jsObjRequest);
-
-  }
-
 }

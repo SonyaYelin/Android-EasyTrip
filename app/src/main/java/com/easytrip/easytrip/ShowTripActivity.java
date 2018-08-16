@@ -45,7 +45,6 @@ public class ShowTripActivity extends AppCompatActivity implements OnMapReadyCal
     private Button              btnMap;
     private Button              btnBack;
 
-    //records
     private LinkedList<Venue>   tripList;
 
     //map
