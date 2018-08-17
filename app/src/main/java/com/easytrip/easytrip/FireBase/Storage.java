@@ -53,7 +53,7 @@ public class Storage {
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                exception.getMessage();
+
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -66,7 +66,7 @@ public class Storage {
     public void getProfileImage(String userId, final ImageView imageView){
         StorageReference islandRef = storageRef.child(userId + JPG);
 
-        final long ONE_MEGABYTE = 1024 * 1024 * 5;
+        final long ONE_MEGABYTE = 1024 * 1024 * 20;
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
@@ -76,7 +76,7 @@ public class Storage {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                exception.getMessage();
+
             }
         });
     }
