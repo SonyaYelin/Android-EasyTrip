@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import com.easytrip.easytrip.ProfileActivity;
 import com.easytrip.easytrip.bl.Trip;
 import com.easytrip.easytrip.bl.User;
-import com.easytrip.easytrip.bl.IVenuesConstants;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -13,7 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class DataBase implements IFireBaseConstants, IVenuesConstants{
+public class DataBase implements IFireBaseConstants{
 
     private static DataBase     db;
     private FirebaseDatabase    database;

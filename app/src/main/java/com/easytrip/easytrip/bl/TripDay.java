@@ -80,10 +80,16 @@ public class TripDay implements Serializable {
     }
 
     public Venue getRestaurant() {
+        int x;
+        if (restaurant == null )
+            x = 0;
         return restaurant;
     }
 
     public Venue getDrink() {
+        int x;
+        if (drink == null )
+            x = 0;
         return drink;
     }
 }

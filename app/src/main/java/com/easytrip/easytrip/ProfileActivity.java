@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.easytrip.easytrip.FireBase.DataBase;
 import com.easytrip.easytrip.FireBase.Storage;
+import com.easytrip.easytrip.bl.InternetConnectionChecker;
 import com.easytrip.easytrip.bl.Trip;
 import com.easytrip.easytrip.bl.User;
 import com.easytrip.easytrip.ui.TripProgressDialog;
@@ -70,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity implements IConstants{
     }
 
     private void showAllTrips(){
-        if ( checkInternetConnection() ) {
+        if ( (new InternetConnectionChecker().checkInternetConnection(this)) ) {
             DataBase.getInstance().getAllTripsFromDB(userID, this);
             TripProgressDialog.getInstance().show(this, LOADING_TRIPS);
         }
@@ -162,17 +163,5 @@ public class ProfileActivity extends AppCompatActivity implements IConstants{
         tvName.setText(NAME + user.getName());
         tvAge.setText(AGE + user.getAge());
         tvEmail.setText(EMAIL + user.getEmail());
-    }
-
-    //internet
-    private boolean checkInternetConnection(){
-        ConnectivityManager conMgr =  (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
-        if (netInfo == null){
-            Toast.makeText(this, NO_INTERNET, Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else
-            return true;
     }
 }

@@ -6,33 +6,25 @@ import com.easytrip.easytrip.SelectPOIActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import static com.easytrip.easytrip.IConstants.MAX_PLACES_PER_DAY;
+import static com.easytrip.easytrip.IConstants.MIN_PLACES_PER_DAY;
+
 public class Trip implements Serializable {
 
-    private String              destination;
     private int                 days;
+    private String              destination;
 
-    private ArrayList<Venue>    plan = new ArrayList<>();
-    private ArrayList<Venue>    selectedVenues = new ArrayList<>();
-    private ArrayList<TripDay>  tripDays = new ArrayList<>();
-
-    private ArrayList<Venue>    foodList = new ArrayList<>();
-    private ArrayList<Venue>    drinksList = new ArrayList<>();
+    private ArrayList<Venue>    plan = new ArrayList<>();       //attractions plan without restaurants and bars
+    private ArrayList<TripDay>  tripDays = new ArrayList<>();   // full days plan
 
     public Trip(){
 
-    }
-
-    Trip(String destination, ArrayList<Venue> plan){
-        this.destination = destination;
-        this.plan = plan;
     }
 
     public Trip(Date startDate, Date endDate, String destination) {
@@ -42,70 +34,79 @@ public class Trip implements Serializable {
         days = (int) TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
     }
 
-
     //build trip
     public void buildTrip(Set selectedVenues, List<Venue> foodList, List<Venue> drinksList, Context context) {
-        this.selectedVenues.addAll(selectedVenues);
-        this.foodList.addAll(foodList);
-        this.drinksList.addAll(drinksList);
+        ArrayList<Venue> selectedVenuesList = new ArrayList<>();
+        selectedVenuesList.addAll(selectedVenues);
 
-        double distancesMatrix[][] = getDistancesMatrix();
-        setOrder(selectedVenues, distancesMatrix, context);
-        createDays();
+        setPlan(selectedVenues, selectedVenuesList);
+        setTripDays(selectedVenuesList, foodList, drinksList);
         ((SelectPOIActivity)context).OnTripReady();
     }
 
-    private void setOrder(Set selectedVenues, double distancesMat[][], Context context) {
+    private void setPlan(Set selectedVenues, ArrayList<Venue> selectedVenuesList) {
         Set<Venue> visited = new HashSet<>();
+        double distancesMatrix[][] = getDistancesMatrix(selectedVenuesList);
 
         int nextVenueIdx = 0;
-
         for( int i = 0; !selectedVenues.isEmpty(); i++) {
-            Venue v = this.selectedVenues.get( nextVenueIdx );
+            Venue v = selectedVenuesList.get( nextVenueIdx );
             visited.add(v);
             plan.add(v);
 
             selectedVenues.remove(v);
-            nextVenueIdx = getClosestVenue( nextVenueIdx, distancesMat, visited );
+            nextVenueIdx = getClosestVenue( nextVenueIdx, distancesMatrix, visited , selectedVenuesList);
         }
     }
 
-    private void createDays() {
-            for (int i = 0; i < days; i++) {
-                TripDay tripDay = new TripDay(i + 1);
-                tripDays.add(tripDay);
-            }
+    private void setTripDays(ArrayList<Venue> selectedVenuesArray, List<Venue> foodList, List<Venue> drinksList) {
+        boolean isMax = ( selectedVenuesArray.size() % MAX_PLACES_PER_DAY == 0 );
+        int daysNumWithMax = selectedVenuesArray.size() % days;
+        int pointsPerDay = MAX_PLACES_PER_DAY;
 
-            int pointsPerDay = (int) Math.floor( selectedVenues.size()/ days );
-            int dayNum = 1;
-            TripDay day = tripDays.get(0);
-            for ( int i = 0 ; i < plan.size(); i++ ){
-                Venue v = plan.get(i);
-                v.setDay(dayNum);
-                if ( tripDays.size() >= dayNum )
-                    day = tripDays.get(dayNum - 1);
-                day.addAttraction(v);
-                if ( pointsPerDay > 1 && dayNum < days && (i+1) % pointsPerDay == 0 )
+        TripDay day = null;
+        for ( int i = 0 , dayNum = 0 ; i < plan.size(); i++){
+            if ( i % pointsPerDay == 0 ) {
+                if ( daysNumWithMax == 0 && !isMax )
+                    pointsPerDay = MIN_PLACES_PER_DAY;
+                if ( dayNum < days ) {
+                    daysNumWithMax--;
                     dayNum++;
+                    day = new TripDay(dayNum);
+                    tripDays.add(day);
+                }
             }
+            Venue v = plan.get(i);
+            v.setDay(dayNum);
+            day.addAttraction(v);
+        }
 
-            for ( TripDay tripDay: tripDays ){
+        setFoodAndDrinks(foodList, drinksList);
+    }
+
+    private void setFoodAndDrinks(List<Venue> foodList, List<Venue> drinksList){
+        try {
+            for( TripDay tripDay: tripDays) {
                 tripDay.setCentroid();
-                Venue food = getClosestVenue(tripDay.getCenterLat(), tripDay.getCenterLng(), foodList);
-                Venue drink =  getClosestVenue(tripDay.getCenterLat(), tripDay.getCenterLng(),drinksList );
+                Venue food = getClosestVenue(tripDay.getCenterLat(), tripDay.getCenterLng(), foodList).clone();
+                Venue drink = getClosestVenue(tripDay.getCenterLat(), tripDay.getCenterLng(), drinksList).clone();
                 food.setDay(tripDay.getDayNum());
                 drink.setDay(tripDay.getDayNum());
                 tripDay.setRestaurant(food);
                 tripDay.setDrink(drink);
             }
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return;
+        }
     }
 
-    private int getClosestVenue( int i, double distancesMat[][], Set<Venue> visited ){
+    private int getClosestVenue( int i, double distancesMat[][], Set<Venue> visited, ArrayList<Venue> selectedVenuesArray ){
         double min = Double.POSITIVE_INFINITY;
         int idx = 0;
-        for ( int j = 0; j< selectedVenues.size(); j++ ){
+        for ( int j = 0; j< selectedVenuesArray.size(); j++ ){
             double temp = distancesMat[i][j];
-            if ( temp < min && j!=i && !visited.contains(selectedVenues.get(j))) {
+            if ( temp < min && j!=i && !visited.contains(selectedVenuesArray.get(j))) {
                 min = temp;
                 idx = j;
             }
@@ -113,13 +114,13 @@ public class Trip implements Serializable {
         return idx;
     }
 
-    private double[][] getDistancesMatrix(){
-        double mat[][] = new double[selectedVenues.size()][selectedVenues.size()];
+    private double[][] getDistancesMatrix(ArrayList<Venue> selectedVenuesArray){
+        double mat[][] = new double[selectedVenuesArray.size()][selectedVenuesArray.size()];
 
-        for ( int i = 0; i< selectedVenues.size(); i++ ){
-            Venue v1 = ( Venue ) selectedVenues.toArray()[i];
-            for ( int j = 0; j < selectedVenues.size(); j++ ){
-                Venue v2 = ( Venue ) selectedVenues.toArray()[j];
+        for ( int i = 0; i< selectedVenuesArray.size(); i++ ){
+            Venue v1 = ( Venue ) selectedVenuesArray.toArray()[i];
+            for ( int j = 0; j < selectedVenuesArray.size(); j++ ){
+                Venue v2 = ( Venue ) selectedVenuesArray.toArray()[j];
                 mat[i][j] = distance(v1.getLat(), v1.getLng(), v2.getLat(), v2.getLng());
             }
         }
@@ -162,20 +163,8 @@ public class Trip implements Serializable {
         this.plan = plan;
     }
 
-    public void setSelectedVenues(ArrayList<Venue> selectedVenues) {
-        this.selectedVenues = selectedVenues;
-    }
-
     public void setTripDays(ArrayList<TripDay> tripDays) {
         this.tripDays = tripDays;
-    }
-
-    public void setFoodList(ArrayList<Venue> foodList) {
-        this.foodList = foodList;
-    }
-
-    public void setDrinksList(ArrayList<Venue> drinksList) {
-        this.drinksList = drinksList;
     }
 
     //getters
@@ -191,19 +180,7 @@ public class Trip implements Serializable {
         return plan;
     }
 
-    public ArrayList<Venue> getSelectedVenues() {
-        return selectedVenues;
-    }
-
     public ArrayList<TripDay> getTripDays() {
         return tripDays;
-    }
-
-    public ArrayList<Venue> getFoodList() {
-        return foodList;
-    }
-
-    public ArrayList<Venue> getDrinksList() {
-        return drinksList;
     }
 }

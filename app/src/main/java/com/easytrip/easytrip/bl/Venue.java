@@ -1,15 +1,10 @@
 package com.easytrip.easytrip.bl;
 
-import android.content.Context;
-
-import com.easytrip.easytrip.api.FoursquareController;
-
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Venue  implements Serializable {
+public class Venue  implements Serializable, Cloneable {
 
   private String                id;
   private String                name;
@@ -50,6 +45,9 @@ public class Venue  implements Serializable {
       day = 0;
   }
 
+  public Venue clone()throws CloneNotSupportedException{
+    return (Venue) super.clone();
+  }
   //setters
   public void setId(String id) {
     this.id = id;

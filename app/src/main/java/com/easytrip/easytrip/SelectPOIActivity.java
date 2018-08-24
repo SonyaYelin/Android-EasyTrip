@@ -8,9 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.easytrip.easytrip.FireBase.DataBase;
-import com.easytrip.easytrip.api.FoursquareController;
+import com.easytrip.easytrip.api.VenuesDataProvider;
+import com.easytrip.easytrip.bl.InternetConnectionChecker;
 import com.easytrip.easytrip.bl.Trip;
 import com.easytrip.easytrip.bl.Venue;
 import com.easytrip.easytrip.ui.TripProgressDialog;
@@ -26,27 +28,22 @@ public class SelectPOIActivity extends AppCompatActivity implements  IConstants 
     private int                     min;
     private int                     max;
     private int                     selected;
-
     private String                  userID;
-
-    private Trip                    trip;
 
     private Button                  nextBtn;
     private Button                  backBtn;
-
     private TextView                textView;
     private TextView                tvSelected;
-
     private RecyclerView            recyclerView;
-
     private VenueRecyclerAdapter    venuesRecyclerAdapter;
-    private FoursquareController    venuesController = new FoursquareController();
+
+    private Trip                    trip;
+    private VenuesDataProvider      venuesDataProvider = new VenuesDataProvider();
 
     private List<Venue>             venuesList = new ArrayList<>();
     private List<Venue>             foodList = new ArrayList<>();
     private List<Venue>             drinksList = new ArrayList<>();
-
-    private Set<Venue>              selectedVenues = new HashSet<>();
+    private Set<Venue>              selectedVenues = new HashSet<>();   //the venues that the user selects
 
 
     @Override
@@ -63,7 +60,8 @@ public class SelectPOIActivity extends AppCompatActivity implements  IConstants 
         setRecyclerView();
 
         //init venues list with the selected location
-        venuesController.getAttractions(trip.getDestination() , venuesList, venuesRecyclerAdapter, SelectPOIActivity.this);
+        TripProgressDialog.getInstance().show(this,  this.getResources().getString(R.string.venue_search_loading) );
+        venuesDataProvider.getAttractions(trip.getDestination() , venuesList, this);
     }
 
     private  void setSelectionBounds(){
@@ -101,8 +99,11 @@ public class SelectPOIActivity extends AppCompatActivity implements  IConstants 
                     nextBtn.setError(SELECT_PLACES);
                     return;
                 }
+                if ( !(new InternetConnectionChecker().checkInternetConnection(SelectPOIActivity.this)) )
+                    return;
+
                 TripProgressDialog.getInstance().show(SelectPOIActivity.this ,BUILDING_TRIP );
-                venuesController.setFoodVenues( trip.getDestination(), foodList, venuesRecyclerAdapter, SelectPOIActivity.this );
+                venuesDataProvider.setFoodVenues( trip.getDestination(), foodList, SelectPOIActivity.this );
             }
         });
     }
@@ -129,11 +130,11 @@ public class SelectPOIActivity extends AppCompatActivity implements  IConstants 
         finish();
     }
 
-    public void onFoodVenuesReady(){
-        venuesController.setDrinksVenues( trip.getDestination(), drinksList, venuesRecyclerAdapter, SelectPOIActivity.this );
+    public void onFoodVenuesResponse(){
+        venuesDataProvider.setDrinkVenues( trip.getDestination(), drinksList, this);
     }
 
-    public void onDrinksVenuesReady(){
+    public void onDrinksVenuesResponse(){
         trip.buildTrip(selectedVenues, foodList, drinksList, SelectPOIActivity.this);
     }
 
@@ -147,5 +148,19 @@ public class SelectPOIActivity extends AppCompatActivity implements  IConstants 
             selectedVenues.remove(venue);
         }
         tvSelected.setText(SELECTED + selected);
+    }
+
+    public void onAttractionsResponse(){
+        TripProgressDialog.getInstance().dismiss(this);
+        venuesRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    public void showError(boolean networkError) {
+        TripProgressDialog.getInstance().dismiss(this);
+
+        if (networkError)
+            new InternetConnectionChecker().showError(this);
+        else
+            Toast.makeText(this, this.getString(R.string.venue_search_loading_error), Toast.LENGTH_SHORT).show();
     }
 }

@@ -43,7 +43,8 @@ public class TripProgressDialog {
     }
 
     public void dismiss(Context context){
-        progressDialog.dismiss();
+        if (progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
 }

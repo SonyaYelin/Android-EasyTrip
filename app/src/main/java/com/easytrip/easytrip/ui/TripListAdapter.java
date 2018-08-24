@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class TripListAdapter extends BaseAdapter {
 
-    private Context         context;
-    private ArrayList<Venue>  tripList;
+    private Context          context;
+    private ArrayList<Venue> tripList;
     private LayoutInflater  inflater;
     private ViewHolder      viewHolder;
 

@@ -74,6 +74,8 @@ public class ShowTripActivity extends AppCompatActivity implements OnMapReadyCal
 
         setListFragment();
         setAllButtons();
+
+
     }
 
     private void setTripPlan(){
