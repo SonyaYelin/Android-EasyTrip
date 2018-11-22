@@ -6,94 +6,84 @@
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
     android:weightSum="1"
-    android:background="@drawable/background">
+    android:id="@+id/create_trip_rl"
+    android:background="@color/colorPrimary">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/create_trip_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/logo" />
+        android:background="@color/colorGrey"
+        android:minWidth="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+        app:title="@string/new_trip"
+        app:titleTextColor="@color/colorWhite">
+    </android.support.v7.widget.Toolbar>
 
-    <EditText
-        android:id="@+id/ed_where"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/logo"
-        android:layout_marginTop="200dp"
+    <LinearLayout
+        android:id="@+id/create_trip_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/create_trip_toolbar"
+        android:orientation="vertical"
         android:layout_centerHorizontal="true"
-        android:textSize="24dp"
-        android:hint="@string/str_where_do_you_want_to_go" />
+        android:layout_margin="10dp"
+        android:background="@drawable/shape2"
+        android:padding="20dp">
 
-    <TextView
-        android:id="@+id/tv_select_departure_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ed_where"
-        android:layout_marginTop="60dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/select_departure_date"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24dp" />
+        <EditText
+            android:id="@+id/ed_where"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_where_do_you_want_to_go"
+            android:drawableRight="@drawable/ic_search_black_24dp"
+            android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/tv_departure_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/tv_select_departure_date"
-        android:layout_marginTop="30dp"
-        android:text="departure"
-        android:textColor="@color/colorAccent"
-        android:textSize="24dp" />
-    <TextView
-        android:id="@+id/tv_select_return_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/tv_departure_date"
-        android:layout_marginTop="30dp"
-        android:text="Select Return Date:"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_return_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/tv_select_return_date"
-        android:layout_marginTop="30dp"
-        android:text="return"
-        android:textColor="@color/colorAccent"
-        android:textSize="24dp" />
+            <TextView
+                android:id="@+id/tv_departure_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/select_start"
+                android:textAlignment="center"
+                android:textColor="@color/colorGrey"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_return_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/select_end"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/colorGrey"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_start"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_alignBottom="@+id/create_trip_ll"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
         android:text="@string/str_start_planing"
-        android:textColor="@android:color/background_light"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button"
-        android:text="@string/back"
-        android:textColor="@android:color/background_light"
+        android:textSize="20dp"
+        android:textColor="@color/colorGrey"
         android:textStyle="bold" />
 
 </RelativeLayout>

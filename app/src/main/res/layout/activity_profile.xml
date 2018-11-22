@@ -5,20 +5,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/sea"
     android:layout_centerHorizontal="true"
     android:weightSum="1">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/profile_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorGrey"
+        android:minWidth="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+        app:title="@string/profile"
+        app:titleTextColor="@color/colorWhite">
+    </android.support.v7.widget.Toolbar>
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_pic"
         android:layout_width="100dp"
+        android:background="@drawable/circular_background"
         android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/profile_pic"
+        android:layout_margin="10dp"
+        android:layout_below="@id/profile_toolbar"
         app:civ_border_color="@color/colorPrimaryDark"
         app:civ_border_width="2dp" />
 
@@ -33,110 +43,13 @@
     android:textSize="20dp"/>
 
     <TextView
-        android:id="@+id/tv_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tv_name"
-        android:layout_marginTop="30dp"
-        android:layout_alignLeft="@+id/tv_name"
-        android:text="age"
-        android:textSize="20dp" />
-
-    <TextView
         android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tv_age"
-        android:layout_marginTop="30dp"
-        android:layout_alignLeft="@+id/tv_age"
+        android:layout_alignStart="@+id/tv_name"
+        android:layout_below="@+id/tv_name"
         android:text="email"
         android:textSize="20dp" />
-
-    <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_alignTop="@+id/profile_pic"
-        android:layout_marginTop="120dp"
-        android:layout_height="300dp"
-        android:id="@+id/table"
-        android:background="@android:color/transparent"
-        android:stretchColumns="1"
-        android:weightSum="3">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="3">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="0.7"
-                android:gravity="center"
-                android:padding="3dip"
-                android:text="@string/place"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="1.3"
-                android:gravity="center"
-                android:padding="3dip"
-                android:text="@string/days"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="3dip"
-                android:textSize="20sp"
-                android:text="@string/more_details"
-                android:textStyle="bold"
-                />
-        </TableRow>
-
-        <ListView
-            android:id="@+id/trip_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@android:color/transparent"
-            android:dividerHeight="2dp"
-            android:focusableInTouchMode="true"
-            android:isScrollContainer="true"></ListView>
-
-
-    </TableLayout>
-
-    <Button
-        android:id="@+id/btn_new_trip"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_alignTop="@+id/table"
-        android:layout_marginTop="305dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/new_trip"
-        android:textColor="@android:color/background_light"
-        android:textSize="16dp"
-        android:background="@drawable/button"
-        android:textStyle="bold"  />
-
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_alignTop="@+id/btn_new_trip"
-        android:layout_marginTop="35dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/back"
-        android:textColor="@android:color/background_light"
-        android:textSize="16dp"
-        android:background="@color/colorPrimary"
-        android:textStyle="bold"  />
-
 
 
 </RelativeLayout>

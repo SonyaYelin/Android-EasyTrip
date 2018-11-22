@@ -7,14 +7,16 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
+
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/logo_with_background"
+        android:supportsRtl="false"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartActivity" android:configChanges="orientation|keyboardHidden|screenSize">
+
+        <activity android:name=".activities.StartActivity" android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,31 +24,31 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainPageActivity" android:configChanges="orientation|keyboardHidden|screenSize">
+        <activity android:name=".activities.MainPageActivity" android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ProfileActivity" android:configChanges="orientation|keyboardHidden|screenSize">
+        <activity android:name=".activities.ProfileActivity" android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".SelectPOIActivity" android:configChanges="orientation|keyboardHidden|screenSize">
+        <activity android:name=".activities.ShowTripActivity" android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ShowTripActivity" android:configChanges="orientation|keyboardHidden|screenSize">
+        <activity android:name=".activities.CreateTripActivity" android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".CreateTripActivity" android:configChanges="orientation|keyboardHidden|screenSize">
+        <activity android:name=".activities.PlanTripActivity" android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
@@ -54,7 +56,8 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCWeXVpomC7V04b4AOrbTP-jMLnHzslyJ8"/>
+            android:value="API KEY"/>
+
     </application>
 
 </manifest>

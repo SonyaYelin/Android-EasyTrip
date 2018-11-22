@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "8561645637",
-    "firebase_url": "https://easytrip-1532175276828.firebaseio.com",
-    "project_id": "easytrip-1532175276828",
-    "storage_bucket": "easytrip-1532175276828.appspot.com"
+    "project_number": "284419256965",
+    "firebase_url": "https://final-project-easy-trip.firebaseio.com",
+    "project_id": "final-project-easy-trip",
+    "storage_bucket": "final-project-easy-trip.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:8561645637:android:015011e4be376d9e",
+        "mobilesdk_app_id": "1:284419256965:android:015011e4be376d9e",
         "android_client_info": {
           "package_name": "com.easytrip.easytrip"
         }
       },
       "oauth_client": [
         {
-          "client_id": "8561645637-19msrd1rf64ggtt4jqhsoa8uj3ksf2fb.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.easytrip.easytrip",
-            "certificate_hash": "334ef75b16f1573fb964eb36d5969b6562147a80"
-          }
-        },
-        {
-          "client_id": "8561645637-2omlsrd9bvnobnvm652k50uka02m61se.apps.googleusercontent.com",
+          "client_id": "284419256965-atqfj41ldec4d5tprnk9c1fug1qasc0r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAORI1cIXY5NhHgOQUzd50UvCvP099VF0U"
+          "current_key": "AIzaSyBRK-7MeGRudnhxo7RUr98TfiO63hzXSkY"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "8561645637-2omlsrd9bvnobnvm652k50uka02m61se.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

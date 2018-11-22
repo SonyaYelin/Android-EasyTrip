@@ -2,25 +2,21 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:state_pressed="true" >
         <shape android:shape="rectangle"  >
-            <corners android:radius="10dip" />
-            <stroke android:width="1dip" android:color="@color/colorAccent" />
-            <gradient android:angle="-90" android:startColor="@color/colorAccent" android:endColor="#ffffff"  />
-        </shape>
-    </item>
-
-    <item android:state_focused="true">
-        <shape android:shape="rectangle"  >
-            <corners android:radius="10dip" />
-            <stroke android:width="1dip" android:color="@color/colorAccent" />
-            <solid android:color="@color/colorAccent"/>
+            <corners android:radius="5dip" />
+            <background android:color="@color/colorPrimaryDark"/>
+            <textColor android:color="@color/colorGrey"/>
+            <!--<stroke android:width="0dip" android:color="@color/colorPrimaryDark" />-->
+            <gradient android:angle="-90" android:startColor="@color/colorPrimaryLight" android:endColor="@color/colorPrimaryDark"  />
         </shape>
     </item>
 
     <item >
         <shape android:shape="rectangle"  >
-            <corners android:radius="10dip" />
-            <stroke android:width="1dip" android:color="@color/colorAccent" />
-            <gradient android:angle="-90" android:startColor="#ffffff" android:centerColor="@color/colorAccent" android:endColor="@color/colorAccent" />
+            <corners android:radius="5dip" />
+            <!--<stroke android:width="1dip" android:color="@color/colorPrimaryDark" />-->
+            <gradient android:angle="-90" android:centerColor="@color/colorPrimaryLight"
+                                            android:endColor="@color/colorPrimaryLight"
+                                            android:startColor="@color/colorPrimaryLight" />
         </shape>
     </item>
 </selector>

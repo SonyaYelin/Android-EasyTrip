@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Venue  implements Serializable, Cloneable {
+public class Venue  implements Serializable {
 
   private String                id;
   private String                name;
@@ -45,9 +45,6 @@ public class Venue  implements Serializable, Cloneable {
       day = 0;
   }
 
-  public Venue clone()throws CloneNotSupportedException{
-    return (Venue) super.clone();
-  }
   //setters
   public void setId(String id) {
     this.id = id;

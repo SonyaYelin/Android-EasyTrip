@@ -20,6 +20,13 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://sdk-repo.sygic.com/NAVI-SDK-stage/"
+        }
+//        maven {
+//            url 'https://maven.tomtom.com:8443/nexus/content/repositories/releases/'
+//        }
+
     }
 }
 

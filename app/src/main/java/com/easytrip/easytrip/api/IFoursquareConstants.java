@@ -2,18 +2,8 @@ package com.easytrip.easytrip.api;
 
 public interface IFoursquareConstants {
 
-    public final static String ICON_SIZE = "64";
 
-    public static final String LOCATION = "location";
-    public static final String LAT = "lat";
-    public static final String LNG = "lng";
-    public static final String COUNTRY = "country";
-    public static final String CITY = "city";
-    public static final String ADDRESS = "address";
-    public static final String NAME = "name";
-    public static final String ID = "id";
-    public static final String CATEGORIES = "categories";
-    public static final String ICON = "icon";
+    public final static String VENUE_ICON_SIZE = "64";
 
     //request url related
     public static final String FOURSQUARE = "https://api.foursquare.com/v2/venues/";
@@ -26,13 +16,9 @@ public interface IFoursquareConstants {
     public static final String DATE = "&v="+ "20180810";
 
     public static final String SECTION = "&section=";
+
     //sections arguments
-    public static final String FOOD = "food";
-    public static final String DRINKS = "drinks";
-    public static final String ARTS = "arts";
-    public static final String OUTDOORS = "outdoors";
     public static final String SIGHTS = "sights";
-    public static final String TRENDING = "trending";
 
     public static final String FOURSQUARE_EXPLORE_URL = FOURSQUARE + EXPLORE + CLIENT_ID + CLIENT_SECRET + DATE +  NEAR;
 
@@ -46,4 +32,15 @@ public interface IFoursquareConstants {
     public static final String PREFIX = "prefix";
     public static final String SUFFIX = "suffix";
 
+    public static final String LOCATION = "location";
+    public static final String LAT = "lat";
+    public static final String LNG = "lng";
+    public static final String COUNTRY = "country";
+    public static final String CITY = "city";
+    public static final String ADDRESS = "address";
+    public static final String NAME = "name";
+    public static final String ID = "id";
+    public static final String CATEGORIES = "categories";
+    public static final String DESCRIPTION = "description";
+    public static final String ICON = "icon";
 }

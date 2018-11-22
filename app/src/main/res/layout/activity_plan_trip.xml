@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_centerHorizontal="true"
+    android:weightSum="1"
+    android:background="@color/colorPrimary">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/plan_trip_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorGrey"
+        android:minWidth="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+        app:title="@string/venues"
+        app:titleTextColor="@color/colorWhite">
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/plan_trip_dates_rl"
+        android:layout_below="@id/plan_trip_toolbar"
+        android:background="@color/colorGrey"
+        android:padding="5dp">
+
+        <EditText
+            android:id="@+id/ed_destination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/destination"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/colorWhite"
+            android:focusable="false"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/ed_destination"
+            android:text="@string/start_date"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_departure_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ed_destination"
+            android:layout_toEndOf="@+id/tv_start"
+            android:text="@string/temp_text"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ed_destination"
+            android:layout_toStartOf="@+id/tv_return_date"
+            android:text="@string/end_date"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_return_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/ed_destination"
+            android:layout_below="@+id/ed_destination"
+            android:text="@string/temp_text"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/plan_trip_dates_rl"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/shape2"
+        >
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/points_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fui_transparent"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/btn_next"
+            android:padding="10dp"
+            android:focusedByDefault="true"
+            android:scrollbars="vertical" />
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button"
+            android:text="@string/next"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

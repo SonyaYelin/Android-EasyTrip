@@ -4,13 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
 
-import static com.easytrip.easytrip.IConstants.MAX_DIALOG_TIME_IN_SEC;
+import static com.easytrip.easytrip.utils.IConstants.MAX_DIALOG_TIME_IN_SEC;
 
 public class TripProgressDialog {
 
-    private static TripProgressDialog tripProgressDialog;
+    private static TripProgressDialog   tripProgressDialog;
 
-    private ProgressDialog progressDialog;
+    private ProgressDialog              progressDialog;
 
     private TripProgressDialog(){
 

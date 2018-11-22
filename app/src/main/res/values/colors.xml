@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#338ca3</color>
-    <color name="colorPrimaryDark">#054a5d</color>
-    <color name="colorAccent">#ee836d</color>
+    <!--main app colors-->
+    <color name="colorPrimary">#caecff</color>
+    <color name="colorPrimaryDark">#a0aeed</color>
+    <color name="colorAccent">#fcd685</color>
+
+    <color name="colorAccentDark">#e47c33</color>
+    <color name="colorPrimaryLight">#caecff</color>
+
+    <color name="colorBlack">#000000</color>
+    <color name="colorGrey">#747474</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorWhiteTransparent">#e0ffffff</color>
+    <color name="colorPink">#fea8ce</color>
+    <color name="colorWhiteTransparent2">#92ffffff</color>
+
+
 </resources>

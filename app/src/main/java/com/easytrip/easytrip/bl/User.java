@@ -1,41 +1,40 @@
 package com.easytrip.easytrip.bl;
 
+import com.easytrip.easytrip.utils.IConstants.GENDER;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
+import java.util.HashMap;
 
 public class User implements Serializable {
 
-    private static int      iDGen;
-
-    private int             id;
+    private String          id;
     private String          name;
     private String          email;
-    private int             age;
+    private GENDER          gender;
 
-    private Trip            currentTrip;
+    private Trip currentTrip;
 
     private ArrayList<Trip> tripHistory = new ArrayList<>();
+    private ArrayList<String> selectedCategories = new ArrayList<>();
 
 
     public User(){
 
     }
 
-    public User (String name, int age, String email){
-        this.name = name;
-        this.age = age;
+    public User (String email, String id){
         this.email = email;
-        this.id = iDGen++;
+        this.id = id;
     }
 
     //setters
-    public static void setiDGen(int iDGen) {
-        User.iDGen = iDGen;
+
+    public void setSelectedCategories(ArrayList<String> selectedCategories) {
+        this.selectedCategories = selectedCategories;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,8 +46,8 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setGender(GENDER gender) {
+        this.gender = gender;
     }
 
     public void setCurrentTrip(Trip currentTrip) {
@@ -60,11 +59,12 @@ public class User implements Serializable {
     }
 
     //getters
-    public static int getiDGen() {
-        return iDGen;
+
+    public ArrayList<String> getSelectedCategories() {
+        return selectedCategories;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -76,8 +76,8 @@ public class User implements Serializable {
         return email;
     }
 
-    public int getAge() {
-        return age;
+    public GENDER getGender() {
+        return gender;
     }
 
     public Trip getCurrentTrip() {

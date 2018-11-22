@@ -8,6 +8,12 @@
     android:padding="5dp"
     android:weightSum="1">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
     <EditText
         android:id="@+id/et_email"
         android:layout_width="250dp"
@@ -15,9 +21,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@android:color/background_light"
+        android:background="@android:color/transparent"
         android:hint="@string/str_e_mail_address"
+        android:textColor="@color/colorGrey"
         android:inputType="textEmailAddress"
+        android:drawableRight="@drawable/ic_mail_outline_black_24dp"
         android:textSize="20dp" />
 
     <EditText
@@ -27,9 +35,11 @@
         android:layout_alignTop="@+id/et_email"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:background="@android:color/background_light"
+        android:background="@android:color/transparent"
         android:hint="@string/str_password"
+        android:textColor="@color/colorGrey"
         android:inputType="textPassword"
+        android:drawableRight="@drawable/ic_lock_outline_black_24dp"
         android:textSize="20dp" />
 
     <Button
@@ -41,21 +51,21 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/button"
         android:text="@string/str_sign_in"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/colorBlack"
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_signup"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignTop="@+id/btn_signin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:background="@android:color/transparent"
-        android:text="New here? Sign Up"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@+id/btn_signin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:background="@android:color/transparent"
+            android:text="New here? Sign Up"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp" />
 
+    </RelativeLayout>
 </RelativeLayout>
