@@ -7,8 +7,8 @@ public interface IFoursquareConstants {
 
     //request url related
     public static final String FOURSQUARE = "https://api.foursquare.com/v2/venues/";
-    public static final String CLIENT_ID = "client_id=ANR2NBHXQNHN01QPJ32ABYUFGSQFPN1LBICTSZGBWDH30TKH";
-    public static final String CLIENT_SECRET = "&client_secret=JRJ0R3W5PU5GQBNEPBV0J40E5NK4JWSWUWE1DNQRHT2GRSJZ";
+    public static final String CLIENT_ID = "client_id";
+    public static final String CLIENT_SECRET = "&client_secret";
 
     public static final String EXPLORE = "explore?";
     //explore arguments:
